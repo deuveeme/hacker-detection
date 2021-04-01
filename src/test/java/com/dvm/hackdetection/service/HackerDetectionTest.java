@@ -40,7 +40,6 @@ public class HackerDetectionTest {
 
     @Before
     public void setUp(){
-        //service = new HackerDetectionImpl();
         Mockito.doNothing().when(repository).addActivity(Mockito.anyString(),Mockito.anyLong());
     }
 
@@ -59,7 +58,7 @@ public class HackerDetectionTest {
 
     @Test
     public void testParseLine_3Failures(){
-        final String logLine = "88.88.55.956,161719690,SIGNIN_FAILURE,Peter Parker";
+        final String logLine = "88.88.55.956,1617191690,SIGNIN_FAILURE,Peter Parker";
         List<Long> datesFailed = new ArrayList<>(Arrays.asList(1617161407L,1617161467L,1617191655L,1617191606L,1617191690L));
         Mockito.when(repository.containsAttemptsForIp(Mockito.anyString())).thenReturn(true);
         Mockito.when(repository.getAttemptDatesFromIp(Mockito.anyString())).thenReturn(datesFailed);
@@ -69,7 +68,7 @@ public class HackerDetectionTest {
 
     @Test
     public void testParseLine_1Failure(){
-        final String logLine = "88.88.55.956,161719690,SIGNIN_FAILURE,Peter Parker";
+        final String logLine = "88.88.55.956,1617191690,SIGNIN_FAILURE,Peter Parker";
         List<Long> datesFailed = new ArrayList<>(Arrays.asList(1617191690L));
         Mockito.when(repository.containsAttemptsForIp(Mockito.anyString())).thenReturn(true);
         Mockito.when(repository.getAttemptDatesFromIp(Mockito.anyString())).thenReturn(datesFailed);
@@ -79,7 +78,7 @@ public class HackerDetectionTest {
 
     @Test
     public void testParseLine_Success(){
-        final String logLine = "88.88.55.956,161719690,SIGNIN_SUCCESS" +
+        final String logLine = "88.88.55.956,1617191690,SIGNIN_SUCCESS" +
                 ",Peter Parker";
         List<Long> datesFailed = new ArrayList<>(Arrays.asList(1617161407L,1617161467L,1617191655L,1617191606L,1617191690L));
         Mockito.when(repository.containsAttemptsForIp(Mockito.anyString())).thenReturn(true);
